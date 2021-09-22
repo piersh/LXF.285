@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 	"time"
 
@@ -16,24 +15,30 @@ func timeHandler(c *gin.Context) {
 }
 
 func defaultHandler(c *gin.Context) {
-	c.String(http.StatusNotFound, "Connecting from "+c.ClientIP())
+	path := c.FullPath()
+	c.String(http.StatusNotFound, "From "+c.ClientIP()+" for "+path)
 
 }
 
 func getUsername(c *gin.Context) {
 	username := c.Param("name")
-	fmt.Println("Username:", username)
 	c.String(http.StatusOK, "Hello %s!", username)
 }
 
+func doSomething(c *gin.Context) {
+	username := c.Param("name")
+	doSomething := c.Param("doSomething")
+	reply := username + " is visiting " + doSomething
+	c.String(http.StatusOK, reply)
+}
+
 func main() {
-	fmt.Println("Starting HTTP server!")
 	router := gin.Default()
 
 	router.GET("/time", timeHandler)
-	router.NoRoute(defaultHandler)
-
 	router.GET("/username/:name", getUsername)
+	router.GET("/username/:name/*doSomething", doSomething)
 
+	router.NoRoute(defaultHandler)
 	router.Run(PORT)
 }
