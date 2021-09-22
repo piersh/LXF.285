@@ -11,8 +11,7 @@ import (
 var PORT = ":8008"
 
 func uploadHandler(c *gin.Context) {
-	name := c.PostForm("name")
-	email := c.PostForm("email")
+	fileID := c.PostForm("fileID")
 
 	// Source
 	file, err := c.FormFile("file")
@@ -27,7 +26,7 @@ func uploadHandler(c *gin.Context) {
 		return
 	}
 
-	c.String(http.StatusOK, fmt.Sprintf("File %s uploaded with fields name=%s and email=%s.", file.Filename, name, email))
+	c.String(http.StatusOK, fmt.Sprintf("File %s uploaded with fileID = %s.", file.Filename, fileID))
 }
 
 func defaultHandler(c *gin.Context) {
