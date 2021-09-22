@@ -23,7 +23,7 @@ func defaultHandler(c *gin.Context) {
 func getUsername(c *gin.Context) {
 	username := c.Param("name")
 	fmt.Println("Username:", username)
-	c.String(http.StatusOK, "Hello %s", username)
+	c.String(http.StatusOK, "Hello %s!", username)
 }
 
 func main() {
