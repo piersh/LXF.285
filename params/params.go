@@ -20,12 +20,20 @@ func defaultHandler(c *gin.Context) {
 
 }
 
+func getUsername(c *gin.Context) {
+	username := c.Param("name")
+	fmt.Println("Username:", username)
+	c.String(http.StatusOK, "Hello %s", username)
+}
+
 func main() {
 	fmt.Println("Starting HTTP server!")
 	router := gin.Default()
 
 	router.GET("/time", timeHandler)
-	router.GET("/", timeHandler)
 	router.NoRoute(defaultHandler)
+
+	router.GET("/username/:name", getUsername)
+
 	router.Run(PORT)
 }
