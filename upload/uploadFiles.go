@@ -13,10 +13,9 @@ var PORT = ":8008"
 func uploadHandler(c *gin.Context) {
 	fileID := c.PostForm("fileID")
 
-	// Source
 	file, err := c.FormFile("file")
 	if err != nil {
-		c.String(http.StatusBadRequest, fmt.Sprintf("get form err: %s", err.Error()))
+		c.String(http.StatusBadRequest, fmt.Sprintf("Error in form: %s", err))
 		return
 	}
 
@@ -31,7 +30,6 @@ func uploadHandler(c *gin.Context) {
 
 func defaultHandler(c *gin.Context) {
 	c.String(http.StatusNotFound, "Connecting from "+c.ClientIP())
-
 }
 
 func main() {
