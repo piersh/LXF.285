@@ -21,7 +21,7 @@ func uploadHandler(c *gin.Context) {
 
 	filename := filepath.Base(file.Filename)
 	if err := c.SaveUploadedFile(file, filename); err != nil {
-		c.String(http.StatusBadRequest, fmt.Sprintf("upload file err: %s", err.Error()))
+		c.String(http.StatusBadRequest, fmt.Sprintf("upload file err: %s\n", err.Error()))
 		return
 	}
 
