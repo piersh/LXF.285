@@ -9,6 +9,7 @@ import (
 )
 
 var PORT = ":8008"
+var UPLOADPATH = "/tmp/data"
 
 func uploadHandler(c *gin.Context) {
 	fileID := c.PostForm("fileID")
@@ -19,7 +20,7 @@ func uploadHandler(c *gin.Context) {
 		return
 	}
 
-	filename := filepath.Base(file.Filename)
+	filename := UPLOADPATH + filepath.Base(file.Filename)
 	if err := c.SaveUploadedFile(file, filename); err != nil {
 		c.String(http.StatusBadRequest, fmt.Sprintf("upload file err: %s\n", err.Error()))
 		return

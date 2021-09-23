@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Upload a file with Gin!</title>
+</head>
+<body>
+<h1>Upload a single file with Gin!</h1>
+
+<form action="/upload" method="post" enctype="multipart/form-data">
+    FileID: <input type="text" name="fileID"><br>
+    file: <input type="file" name="file"><br><br>
+    <input type="submit" value="Submit">
+</form>
+</body>
