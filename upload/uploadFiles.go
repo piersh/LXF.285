@@ -9,7 +9,7 @@ import (
 )
 
 var PORT = ":8008"
-var UPLOADPATH = "/tmp/data"
+var UPLOADPATH = "./data/"
 
 func uploadHandler(c *gin.Context) {
 	fileID := c.PostForm("fileID")
