@@ -16,20 +16,20 @@ func timeHandler(c *gin.Context) {
 
 func defaultHandler(c *gin.Context) {
 	path := c.FullPath()
-	c.String(http.StatusNotFound, "From "+c.ClientIP()+" for "+path)
+	c.String(http.StatusNotFound, "From "+c.ClientIP()+" for "+path+"\n")
 
 }
 
 func getUsername(c *gin.Context) {
 	username := c.Param("name")
-	c.String(http.StatusOK, "Hello %s!", username)
+	c.String(http.StatusOK, "Hello %s!\n", username)
 }
 
 func doSomething(c *gin.Context) {
 	username := c.Param("name")
 	doSomething := c.Param("doSomething")
 	reply := username + " is visiting " + doSomething
-	c.String(http.StatusOK, reply)
+	c.String(http.StatusOK, reply+"\n")
 }
 
 func main() {
