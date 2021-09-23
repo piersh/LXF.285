@@ -23,13 +23,10 @@ func defaultHandler(c *gin.Context) {
 
 func main() {
 	gin.DisableConsoleColor()
-
-	router := gin.Default()
-
 	f, _ := os.Create(LOGFILE)
-	gin.DefaultWriter = io.MultiWriter(f)
 	gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
 
+	router := gin.Default()
 	router.GET("/time", timeHandler)
 	router.PUT("/time", timeHandler)
 	router.GET("/", timeHandler)
