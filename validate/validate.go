@@ -44,7 +44,8 @@ func addUser(c *gin.Context) {
 func main() {
 	router := gin.Default()
 
-	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
+	v, ok := binding.Validator.Engine().(*validator.Validate)
+	if ok {
 		v.RegisterValidation("longenough", longenough)
 	}
 
