@@ -17,7 +17,6 @@ func timeHandler(c *gin.Context) {
 
 func defaultHandler(c *gin.Context) {
 	c.String(http.StatusNotFound, "Connecting from "+c.ClientIP())
-
 }
 
 func main() {
